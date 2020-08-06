@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "stack.h"
+
 
 int main(int argc, char **argv)
 {
@@ -25,11 +27,11 @@ int main(int argc, char **argv)
         fscanf(traceFp, "%c%x\n", &type, &address);
         if(type == '>')
         {
-            
+            printf(">");
         }
         else if(type == '<')
         {
-
+            printf("<");
         }
     }
 
