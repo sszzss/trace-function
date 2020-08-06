@@ -1,0 +1,7 @@
+*.o
+*.log
+**/*.log
+*.out
+*.dSYM
+*.exe
+**/*.exe
