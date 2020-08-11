@@ -2,7 +2,7 @@
 
 #define MAX_ELEMENTS 200
 
-static int stack[MAX_ELEMENTS];
+static unsigned int stack[MAX_ELEMENTS];
 static int index;
 
 void initStack()
@@ -16,13 +16,13 @@ int stackSize()
     return index;
 }
 
-int stackTop()
+unsigned int stackTop()
 {
     assert(index > 0);
     return stack[index - 1];
 }
 
-void pushStack(int value)
+void pushStack(unsigned int value)
 {
     assert(index < MAX_ELEMENTS);
     stack[index] =value;
@@ -31,7 +31,7 @@ void pushStack(int value)
     return;
 }
 
-int popStack()
+unsigned int popStack()
 {
     assert(index > 0);
 

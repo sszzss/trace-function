@@ -3,10 +3,9 @@
 
 #include "stack.h"
 
-
 int main(int argc, char **argv)
 {
-    if(argc != 3)
+    if (argc != 3)
     {
         printf("Illegal arguments.");
         exit(-1);
@@ -14,7 +13,7 @@ int main(int argc, char **argv)
 
     FILE *traceFp;
     traceFp = fopen(argv[1], "r");
-    if(traceFp == NULL)
+    if (traceFp == NULL)
     {
         printf("Can't open %s.\n", argv[1]);
         exit(-1);
@@ -22,14 +21,14 @@ int main(int argc, char **argv)
 
     char type;
     unsigned int address;
-    while(!feof(traceFp))
+    while (!feof(traceFp))
     {
         fscanf(traceFp, "%c%x\n", &type, &address);
-        if(type == '>')
+        if (type == '>')
         {
             printf(">");
         }
-        else if(type == '<')
+        else if (type == '<')
         {
             printf("<");
         }

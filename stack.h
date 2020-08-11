@@ -1,14 +1,14 @@
-#ifndef __STACK_H
-#define __STACK_H
+#ifndef __STACK_H_
+#define __STACK_H_
 
 void initStack();
 
 int stackSize();
 
-int stackTop();
+unsigned int stackTop();
 
-void pushStack(int value);
+void pushStack(unsigned int value);
 
-int popStack();
+unsigned int popStack();
 
 #endif

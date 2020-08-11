@@ -1,7 +1,7 @@
 #ifdef __cplusplus
 extern "C"
 {
-#endif
+    #endif
 
     #include <stdio.h>
     #include <stdlib.h>
@@ -58,15 +58,15 @@ extern "C"
                 exit(-1);
             }
         }
-        fprintf(fp, ">%p\n", (int *)this_fn);
-        printf(">%p\n", (int *)this_fn);
+        fprintf(fp, ">%p\n", (unsigned int *)this_fn);
+        printf(">%p\n", (unsigned int *)this_fn);
     }
 
     void __cyg_profile_func_exit(void *this_fn, void *call_site)
     {
         // Dl_info info = get_dl_info(this_fn, call_site);
-        fprintf(fp, "<%p\n", (int *)this_fn);
-        printf("<%p\n", (int *)this_fn);
+        fprintf(fp, "<%p\n", (unsigned int *)this_fn);
+        printf("<%p\n", (unsigned int *)this_fn);
     }
 
     void main_constructor()
@@ -82,6 +82,6 @@ extern "C"
     }
 
 
-#ifdef __cplusplus
+    #ifdef __cplusplus
 }
 #endif
