@@ -17,10 +17,9 @@ int translateFunctionFromSymbol(unsigned int address, char *func);
 
 void initSymbol(char *image)
 {
-    int from, to;
-
     strcpy(imageName, image);
 
+    int from, to;
     for (from = 0; from < MAX_FUNCTIONS; ++from)
     {
         functions[from].address = 0;
@@ -39,7 +38,6 @@ void initSymbol(char *image)
 int lookupSymbol(unsigned int address)
 {
     int index;
-
     for (index = 0; index < MAX_FUNCTIONS; ++index)
     {
         if (functions[index].address == 0)
@@ -51,11 +49,11 @@ int lookupSymbol(unsigned int address)
         {
             return index;
         }
-
-        assert(0);
-
-        return 0;
     }
+
+    assert(0);
+
+    return 0;
 }
 
 void addSymbol(unsigned int address)
@@ -67,7 +65,8 @@ void addSymbol(unsigned int address)
         {
             return;
         }
-        if (functions[index].address == '\0')
+
+        if (functions[index].address == 0)
         {
             break;
         }
@@ -75,7 +74,7 @@ void addSymbol(unsigned int address)
 
     if (index < MAX_FUNCTIONS)
     {
-        functions[index].address =address;
+        functions[index].address = address;
         translateFunctionFromSymbol(address, functions[index].funcName);
     }
     else

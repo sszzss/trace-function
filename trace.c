@@ -2,20 +2,24 @@
 #include <stdlib.h>
 
 #include "stack.h"
+#include "symbols.h"
 
 int main(int argc, char **argv)
 {
     if (argc != 3)
     {
-        printf("Illegal arguments.");
+        printf("Illegal arguments.\n");
         exit(-1);
     }
 
+    initSymbol(argv[1]);
+    initStack();
+
     FILE *traceFp;
-    traceFp = fopen(argv[1], "r");
+    traceFp = fopen(argv[2], "r");
     if (traceFp == NULL)
     {
-        printf("Can't open %s.\n", argv[1]);
+        printf("Can't open %s.\n", argv[2]);
         exit(-1);
     }
 
@@ -24,15 +28,20 @@ int main(int argc, char **argv)
     while (!feof(traceFp))
     {
         fscanf(traceFp, "%c%x\n", &type, &address);
+
         if (type == '>')
         {
-            printf(">");
+            addSymbol(address);
+            addCallTrace(address);
+            pushStack(address);
         }
         else if (type == '<')
         {
-            printf("<");
+            popStack();
         }
     }
+
+    emitSymbols();
 
     fclose(traceFp);
 
