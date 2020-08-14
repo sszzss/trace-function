@@ -83,7 +83,6 @@ void addSymbol(unsigned int address)
     }
 }
 
-
 void addCallTrace(unsigned int address)
 {
     if (stackSize())
@@ -93,7 +92,6 @@ void addCallTrace(unsigned int address)
 
     return;
 }
-
 
 void emitSymbols()
 {
@@ -143,17 +141,24 @@ void emitSymbols()
 
     for (from = 0; from < MAX_FUNCTIONS; from++)
     {
-        if (calls[from][to])
-        {
-            fprintf(fp, "  %s -> %s [label=\"%d calls\" fontsize=\"10\"]\n",
-                functions[from].funcName,
-                functions[to].funcName,
-                calls[from][to]);
-        }
-
-        if (functions[to].address == 0)
+        if (functions[from].address == 0)
         {
             break;
+        }
+        for (to = 0; to < MAX_FUNCTIONS; to++)
+        {
+            if (calls[from][to])
+            {
+                fprintf(fp, "  %s -> %s [label=\"%d calls\" fontsize=\"10\"]\n",
+                        functions[from].funcName,
+                        functions[to].funcName,
+                        calls[from][to]);
+            }
+
+            if (functions[to].address == 0)
+            {
+                break;
+            }
         }
     }
 
@@ -164,11 +169,10 @@ void emitSymbols()
     return;
 }
 
-
 int translateFunctionFromSymbol(unsigned int address, char *func)
 {
     char cmd[200];
-    sprintf(cmd, "addr2line -e %s -f 0x%s|c++filt", imageName, address);
+    sprintf(cmd, "addr2line -e %s -f 0x%x | c++filt", imageName, address);
 
     FILE *fp = popen(cmd, "r");
 
