@@ -7,7 +7,7 @@ Sample::Sample()
 
 void Sample::hello()
 {
-    std::cout << "hello.\n" << std::endl;
+    std::cout << "hello." << std::endl;
 }
 
 Sample::~Sample()
