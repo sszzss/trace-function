@@ -108,7 +108,7 @@ void emitSymbols()
         exit(0);
     }
 
-    fprintf(fp, "digraph %s {\n\n", imageName);
+    fprintf(fp, "digraph \"%s\" {\n\n", imageName);
 
     int from, to;
     for (from = 0; from < MAX_FUNCTIONS; from++)
@@ -131,11 +131,11 @@ void emitSymbols()
         }
         if (totals[from])
         {
-            fprintf(fp, " %s[shape=rectangle]\n", functions[from].funcName);
+            fprintf(fp, " \"%s\"[shape=rectangle]\n", functions[from].funcName);
         }
         else
         {
-            fprintf(fp, " %s[shape=ellipse]\n", functions[from].funcName);
+            fprintf(fp, " \"%s\"[shape=ellipse]\n", functions[from].funcName);
         }
     }
 
@@ -149,7 +149,7 @@ void emitSymbols()
         {
             if (calls[from][to])
             {
-                fprintf(fp, "  %s -> %s [label=\"%d calls\" fontsize=\"10\"]\n",
+                fprintf(fp, "  \"%s\" -> \"%s\" [label=\"%d calls\" fontsize=\"10\"]\n",
                         functions[from].funcName,
                         functions[to].funcName,
                         calls[from][to]);

@@ -3,6 +3,7 @@
 
 #include "stack.h"
 #include "symbols.h"
+#include "draw.h"
 
 int main(int argc, char **argv)
 {
@@ -44,6 +45,8 @@ int main(int argc, char **argv)
     emitSymbols();
 
     fclose(traceFp);
+
+    drawWithDocker("graph.dot", "svg");
 
     return 0;
 }
